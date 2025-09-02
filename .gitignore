@@ -1,3 +1,1 @@
-.config/nvim/pack/
-.config/nvim/.gitignore
-.config/nvim/.git/
+.config/nvim/pack/*
