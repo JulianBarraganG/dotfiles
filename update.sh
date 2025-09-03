@@ -20,7 +20,7 @@ rm -rf ~/dotfiles/nvim/pack/ ~/dotfiles/nvim/.git/ ~/dotfiles/nvim/.gitignore
 cd ~/dotfiles
 
 git add --all
-if [ git diff --staged --quiet ]; then
+if git diff --staged --quiet; then
     echo "No changes to commit"
     exit 0
 fi
