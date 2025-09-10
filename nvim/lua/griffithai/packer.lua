@@ -17,8 +17,6 @@ end
 bootstrap_pckr()
 
 require('pckr').add{
-  -- Packer can manage itself
-  'wbthomason/packer.nvim';
 
   -- Telescope
   {
