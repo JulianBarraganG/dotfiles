@@ -4,7 +4,6 @@ require("mason-lspconfig").setup({
 		"lua_ls",		-- Lua LS
 		"pyright", 		-- Python LS
 		"harper_ls",		-- C/C++ and more LS
-		"fsautocomplete",	-- F#
 		"ruff",			-- ruff linter
 	};
 	automatic_enable = false
@@ -14,12 +13,27 @@ require("mason-lspconfig").setup({
 
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
-local lspconfig_defaults = require('lspconfig').util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-	'force',
-	lspconfig_defaults.capabilities,
-	require('cmp_nvim_lsp').default_capabilities()
-)
+local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+vim.lsp.config('*', {
+  capabilities = cmp_capabilities,
+  -- you could also define `on_attach`, `root_markers`, etc here
+})
+
+-- If you want to customise e.g. lua_ls:
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },
+      diagnostics = { globals = { 'vim' } },
+    },
+  },
+})
+
+-- enable servers
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('pyright')
+
 -- LSP reserves some space in the sign column, disable it
 vim.opt.signcolumn = 'no'
 
@@ -48,10 +62,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 local cmp = require('cmp')
 
-require("lspconfig").lua_ls.setup {}
-require("lspconfig").pyright.setup {}
-require("lspconfig").harper_ls.setup {}
-require("lspconfig").fsautocomplete.setup {}
+vim.lsp.enable("harper_ls")
+vim.lsp.enable("ruff")
 
 cmp.setup({
 	sources = {
