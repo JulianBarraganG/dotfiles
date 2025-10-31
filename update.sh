@@ -8,6 +8,16 @@ if [ ! -d ~/.config/nvim ]; then
     exit 1
 fi
 
+if [ ! -f ~/.bashrc ]; then
+    echo "Error: .bashrc not found!"
+    exit 1
+fi
+
+if [ ! -f ~/.bash_aliases ]; then
+    echo "Error: .bash_aliases not found!"
+    exit 1
+fi
+
 echo "Syncing dotfiles..."
 
 cp -rf ~/.config/nvim/ ~/dotfiles/
