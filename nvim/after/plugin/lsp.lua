@@ -5,6 +5,7 @@ require("mason-lspconfig").setup({
 		"pyright", 		-- Python LS
 		"harper_ls",		-- C/C++ and more LS
 		"ruff",			-- ruff linter
+		"omnisharp", 	-- C# LS, REQUIRES .NET 6.0 SDK TO BUILD
 	};
 	automatic_enable = false
 })
