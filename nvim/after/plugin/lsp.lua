@@ -6,6 +6,7 @@ require("mason-lspconfig").setup({
 		"harper_ls",		-- C/C++ and more LS
 		"ruff",			-- ruff linter
 		"omnisharp", 	-- C# LS, REQUIRES .NET 6.0 SDK TO BUILD
+		"jdtls",		-- Java LS
 	};
 	automatic_enable = false
 })
@@ -31,9 +32,6 @@ vim.lsp.config('lua_ls', {
   },
 })
 
--- enable servers
-vim.lsp.enable('lua_ls')
-vim.lsp.enable('pyright')
 
 -- LSP reserves some space in the sign column, disable it
 vim.opt.signcolumn = 'no'
@@ -62,9 +60,33 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 
 local cmp = require('cmp')
+--
+-- Configure jdtls
+vim.lsp.config('jdtls', {
+  cmd = { 'jdtls' },
+  root_markers = { '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' },
+  settings = {
+    java = {
+      configuration = {
+        runtimes = {
+          {
+            name = "JavaSE-21",
+            path = "/usr/lib/jvm/java-21-openjdk-amd64/",
+          }
+        }
+      },
+      signatureHelp = { enabled = true },
+      contentProvider = { preferred = 'fernflower' },
+    }
+  },
+})
 
-vim.lsp.enable("harper_ls")
-vim.lsp.enable("ruff")
+-- enable servers
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('pyright')
+vim.lsp.enable('harper_ls')
+vim.lsp.enable('ruff')
+vim.lsp.enable('jdtls')
 
 cmp.setup({
 	sources = {
