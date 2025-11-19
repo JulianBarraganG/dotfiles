@@ -20,7 +20,7 @@ fi
 
 echo "Syncing dotfiles..."
 
-cp -rf ~/.config/nvim/ ~/dotfiles/
+cp -rf ~/.config/nvim/* ~/dotfiles/nvim/
 cp ~/.bashrc ~/dotfiles/.bashrc
 cp ~/.bash_aliases ~/dotfiles/.bash_aliases
 
