@@ -1,3 +1,3 @@
 require("griffithai.remap")
-require("griffithai.set")
 require("griffithai.lazy")
+require("griffithai.set")

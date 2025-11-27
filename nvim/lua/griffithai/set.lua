@@ -16,4 +16,11 @@ vim.opt.tabstop = 4 -- think this is needed
 vim.opt.expandtab = false
 vim.opt.autoindent = true
 vim.opt.smartindent = true
-vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't continue comments on new line
+
+-- Override all ftplugins to :set fo-=c as well as r and o
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    callback = function()
+        vim.opt.formatoptions:remove({ "c", "r", "o" })
+    end,
+})

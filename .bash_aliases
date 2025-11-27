@@ -4,6 +4,6 @@ alias dots='bash ~/dotfiles/update.sh'
 alias vl='source .venv/bin/activate'
 # ACS Aliases
 alias acs='cd ~/masters/acs/'
-alias rcomp='xreader ~/masters/acs/mat/comp.pdf &'
-alias rics='xreader ~/masters/acs/mat/Saltzer-Kaashoek-IntroCS.pdf &'
+alias rcomp='open ~/masters/acs/mat/comp.pdf &'
+alias rics='open ~/masters/acs/mat/Saltzer-Kaashoek-IntroCS.pdf &'
 alias jcrs='cd ~/masters/acs/java-course/'
