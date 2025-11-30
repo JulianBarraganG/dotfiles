@@ -1,12 +1,13 @@
-require("mason").setup()
-require("mason-lspconfig").setup({
+require('mason').setup()
+require('mason-lspconfig').setup({
 	ensure_installed = {
-		"lua_ls",		-- Lua LS
-		"pyright", 		-- Python LS
-		"harper_ls",		-- C/C++ and more LS
-		"ruff",			-- ruff linter
-		"omnisharp", 	-- C# LS, REQUIRES .NET 6.0 SDK TO BUILD
-		"jdtls",		-- Java LS
+		'lua_ls',		-- Lua LS
+		'pyright', 		-- Python LS
+		'ruff',			-- ruff linter
+		'omnisharp', 	-- C# LS, REQUIRES .NET 6.0 SDK TO BUILD
+		'jdtls',		-- Java LS
+		'clangd',		-- C/C++ LS
+		'rust_analyzer',-- Rust LS
 	};
 	automatic_enable = false
 })
@@ -22,7 +23,7 @@ vim.lsp.config('*', {
   -- you could also define `on_attach`, `root_markers`, etc here
 })
 
--- If you want to customise e.g. lua_ls:
+-- Lua language server settings
 vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
@@ -31,7 +32,6 @@ vim.lsp.config('lua_ls', {
     },
   },
 })
-
 
 -- LSP reserves some space in the sign column, disable it
 vim.opt.signcolumn = 'no'
@@ -70,8 +70,8 @@ vim.lsp.config('jdtls', {
       configuration = {
         runtimes = {
           {
-            name = "JavaSE-21",
-            path = "/usr/lib/jvm/java-21-openjdk-amd64/",
+            name = 'JavaSE-21',
+            path = '/usr/lib/jvm/java-21-openjdk-amd64/',
           }
         }
       },
@@ -82,11 +82,13 @@ vim.lsp.config('jdtls', {
 })
 
 -- enable servers
-vim.lsp.enable('lua_ls')
-vim.lsp.enable('pyright')
-vim.lsp.enable('harper_ls')
-vim.lsp.enable('ruff')
-vim.lsp.enable('jdtls')
+vim.lsp.enable('lua_ls') -- Lua LS
+vim.lsp.enable('pyright') -- Python LS
+vim.lsp.enable('ruff') -- ruff linter
+vim.lsp.enable('jdtls') -- Java
+vim.lsp.enable('clangd') -- C/C++
+vim.lsp.enable('omnisharp') -- C#
+vim.lsp.enable('rust_analyzer') -- Rust
 
 cmp.setup({
 	sources = {
@@ -123,8 +125,7 @@ local in_line = false
 function ToggleLspErrors()
   in_line = not in_line
   vim.diagnostic.config({ virtual_text = in_line })
-  print("LSP virtual text " .. (in_line and "enabled" or "disabled"))
+  print('LSP virtual text ' .. (in_line and 'enabled' or 'disabled'))
 end
 
-vim.keymap.set("n", "<leader>te", ToggleLspErrors, { desc = "Toggle LSP errors" })
-
+vim.keymap.set('n', '<leader>te', ToggleLspErrors, { desc = 'Toggle LSP errors' })
