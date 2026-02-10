@@ -2,9 +2,7 @@ alias oldvim='/usr/bin/vim'
 alias vim='nvim'
 alias dots='bash ~/dotfiles/update.sh'
 alias vl='source .venv/bin/activate'
-# ACS Aliases
-alias acs='cd ~/masters/acs/'
-alias rcomp='open ~/masters/acs/mat/comp.pdf &'
-alias rics='open ~/masters/acs/mat/Saltzer-Kaashoek-IntroCS.pdf &'
-alias rdbms='open ~/masters/acs/mat/dbms3rd.pdf &'
-alias jcrs='cd ~/masters/acs/java-course/'
+# Blok 3 aliases
+alias rnno='open ~/masters/no/ln/notes_no.pdf &'
+alias rsz='open ~/masters/sip/mat/szeliski.pdf &'
+alias rgw='open ~/masters/sip/mat/gw-dip.pdf &'
