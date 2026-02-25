@@ -143,3 +143,6 @@ export NVM_DIR="$HOME/.nvm"
 
 . "$HOME/.local/bin/env"
 . "$HOME/.cargo/env"
+
+# for matplotlib plots
+
