@@ -10,5 +10,3 @@ rsync -a --delete ~/dotfiles/nvim/ ~/.config/nvim/
 # bash dotfiles: copy only if present in repo
 [ -f ~/dotfiles/.bashrc ] && cp ~/dotfiles/.bashrc ~/.bashrc
 [ -f ~/dotfiles/.bash_aliases ] && cp ~/dotfiles/.bash_aliases ~/.bash_aliases
-
-echo "redist done"
