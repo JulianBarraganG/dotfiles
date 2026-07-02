@@ -140,8 +140,5 @@ export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
 
 eval "$(task --completion bash)"
 
-# GI certificates set for mise
-# mise set --global AWS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
-# mise set --global SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
-# mise set --global REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
-# mise set --global NODE_EXTRA_CA_CERTS=/usr/local/share/ca-certificates/zscaler.crt
+. "$HOME/.local/bin/env"
+. "$HOME/.cargo/env"
