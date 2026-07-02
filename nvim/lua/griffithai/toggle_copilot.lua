@@ -7,4 +7,3 @@ function ToggleCopilot()
     end
     vim.cmd("Copilot status")
 end
-

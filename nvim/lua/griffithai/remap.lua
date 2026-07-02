@@ -6,7 +6,6 @@ vim.g.mapleader = " "
 -- Copilot enable/disable
 vim.keymap.set("n", "<leader>cp", ToggleCopilot, { desc = "Toggle Copilot" })
 
-
 vim.keymap.set("n", "<leader>pv", "<CMD>Oil<CR>")
 
 -- Move highlighted lines around with J and K

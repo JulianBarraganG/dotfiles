@@ -3,19 +3,26 @@ local default = "tokyonight-moon"
 local rose =  "#f7768e"
 local violet ="#7aa2f7"
 
+
 function ColorTheme(color)
 
 	if color == "help" then
 		print("Switch themes with the command")
 		print("lua ColorTheme(color)")
 		print("Available themes are")
-		print("catppuccin | tokyonight")
+		print("catppuccin | latte | tokyonight")
 		return
 
     	elseif color == "catppuccin" then
 		vim.cmd.colorscheme("catppuccin-mocha")
+	elseif color == "latte" then
+		vim.cmd.colorscheme("catppuccin-latte")
 	elseif color == "tokyonight" then
 		vim.cmd.colorscheme("tokyonight-moon")
+	-- Set comment color to a specific color
+	elseif color == "hl" then
+		vim.api.nvim_set_hl(0, "Comment", { fg = rose })
+		vim.cmd.colorscheme(default)
 	else
 		vim.cmd.colorscheme(default)
 	end
@@ -26,6 +33,7 @@ function ColorTheme(color)
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 	]]--
 
+
 	-- Customize line numbers
 	vim.api.nvim_set_hl(0, "LineNrAbove", { fg = violet })
 	vim.api.nvim_set_hl(0, "LineNr", { fg = rose })
@@ -33,4 +41,3 @@ function ColorTheme(color)
 end
 
 ColorTheme(default)
-

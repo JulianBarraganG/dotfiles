@@ -1,11 +1,13 @@
-require("mason").setup()
-require("mason-lspconfig").setup({
+require('mason').setup()
+require('mason-lspconfig').setup({
 	ensure_installed = {
-		"lua_ls",		-- Lua LS
-		"pyright", 		-- Python LS
-		"harper_ls",		-- C/C++ and more LS
-		"fsautocomplete",	-- F#
-		"ruff",			-- ruff linter
+		'lua_ls',		-- Lua LS
+		'pyright', 		-- Python LS
+		'ruff',			-- ruff linter
+		'omnisharp', 	-- C# LS, REQUIRES .NET 6.0 SDK TO BUILD
+		'jdtls',		-- Java LS
+		'clangd',		-- C/C++ LS
+		'rust_analyzer',-- Rust LS
 	};
 	automatic_enable = false
 })
@@ -14,12 +16,23 @@ require("mason-lspconfig").setup({
 
 -- Add cmp_nvim_lsp capabilities settings to lspconfig
 -- This should be executed before you configure any language server
-local lspconfig_defaults = require('lspconfig').util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-	'force',
-	lspconfig_defaults.capabilities,
-	require('cmp_nvim_lsp').default_capabilities()
-)
+local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+vim.lsp.config('*', {
+  capabilities = cmp_capabilities,
+  -- you could also define `on_attach`, `root_markers`, etc here
+})
+
+-- Lua language server settings
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },
+      diagnostics = { globals = { 'vim' } },
+    },
+  },
+})
+
 -- LSP reserves some space in the sign column, disable it
 vim.opt.signcolumn = 'no'
 
@@ -47,11 +60,35 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 
 local cmp = require('cmp')
+--
+-- Configure jdtls
+vim.lsp.config('jdtls', {
+  cmd = { 'jdtls' },
+  root_markers = { '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' },
+  settings = {
+    java = {
+      configuration = {
+        runtimes = {
+          {
+            name = 'JavaSE-21',
+            path = '/usr/lib/jvm/java-21-openjdk-amd64/',
+          }
+        }
+      },
+      signatureHelp = { enabled = true },
+      contentProvider = { preferred = 'fernflower' },
+    }
+  },
+})
 
-require("lspconfig").lua_ls.setup {}
-require("lspconfig").pyright.setup {}
-require("lspconfig").harper_ls.setup {}
-require("lspconfig").fsautocomplete.setup {}
+-- enable servers
+vim.lsp.enable('lua_ls') -- Lua LS
+vim.lsp.enable('pyright') -- Python LS
+vim.lsp.enable('ruff') -- ruff linter
+vim.lsp.enable('jdtls') -- Java
+vim.lsp.enable('clangd') -- C/C++
+vim.lsp.enable('omnisharp') -- C#
+vim.lsp.enable('rust_analyzer') -- Rust
 
 cmp.setup({
 	sources = {
@@ -88,8 +125,7 @@ local in_line = false
 function ToggleLspErrors()
   in_line = not in_line
   vim.diagnostic.config({ virtual_text = in_line })
-  print("LSP virtual text " .. (in_line and "enabled" or "disabled"))
+  print('LSP virtual text ' .. (in_line and 'enabled' or 'disabled'))
 end
 
-vim.keymap.set("n", "<leader>te", ToggleLspErrors, { desc = "Toggle LSP errors" })
-
+vim.keymap.set('n', '<leader>te', ToggleLspErrors, { desc = 'Toggle LSP errors' })

@@ -98,8 +98,7 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # My own aliases
-alias oldvim='/usr/bin/vim'
-alias vim='nvim'
+alias nvim='/opt/nvim-linux-x86_64/bin/nvim'
 
 # Custom functions
 mkcd() {
@@ -131,12 +130,18 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# for modular mojo
-export MODULAR_HOME="$HOME/.modular"
-export PATH="$MODULAR_HOME/pkg/packages.modular.com_mojo/bin:$PATH"
-
+eval "$(~/.local/bin/mise activate bash)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
+
+eval "$(task --completion bash)"
+
+# GI certificates set for mise
+# mise set --global AWS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+# mise set --global SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+# mise set --global REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+# mise set --global NODE_EXTRA_CA_CERTS=/usr/local/share/ca-certificates/zscaler.crt
