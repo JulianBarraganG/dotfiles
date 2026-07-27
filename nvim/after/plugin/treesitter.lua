@@ -3,6 +3,7 @@ require'nvim-treesitter.configs'.setup {
 	ensure_installed = {
 		"python", "c", "cpp", "c_sharp", "java", "javascript", "typescript",
 		"lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "bash",
+		"json", "jsonc", "yaml", "toml",
 	},
 
 	-- Install parse~rs synchronously (only applied to `ensure_installed`)

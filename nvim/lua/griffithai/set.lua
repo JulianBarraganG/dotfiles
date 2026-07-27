@@ -17,6 +17,18 @@ vim.opt.expandtab = false
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
+-- Filetype detection for formats nvim doesn't know about
+-- JSON Lines / NDJSON are just JSON values one per line
+vim.filetype.add({
+    extension = {
+        jsonl = "json",
+        ndjson = "json",
+    },
+})
+
+-- Never conceal quotes/escapes in JSON (the builtin syntax does this by default)
+vim.g.vim_json_conceal = 0
+
 -- Override all ftplugins to :set fo-=c as well as r and o
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
