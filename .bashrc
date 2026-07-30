@@ -98,7 +98,11 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # My own aliases
-alias nvim='/opt/nvim-linux-x86_64/bin/nvim'
+# Use the /opt tarball nvim only where it exists (work box);
+# otherwise fall through to whatever nvim is on PATH (e.g. snap on this WSL).
+if [ -x /opt/nvim-linux-x86_64/bin/nvim ]; then
+  alias nvim='/opt/nvim-linux-x86_64/bin/nvim'
+fi
 
 # Custom functions
 mkcd() {
@@ -130,13 +134,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
-eval "$(~/.local/bin/mise activate bash)"
+# Activate mise only where it is installed (absent on this WSL box).
+if [ -x ~/.local/bin/mise ]; then
+  eval "$(~/.local/bin/mise activate bash)"
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
 
 eval "$(task --completion bash)"
 
