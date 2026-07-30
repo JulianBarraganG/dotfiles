@@ -21,7 +21,7 @@ fi
 echo "Syncing dotfiles..."
 
 cp -rf ~/.config/nvim/* ~/dotfiles/nvim/
-cp -rƒ ~/.config/tmux/* ~/dotfiles/tmux/
+cp -rf ~/.config/tmux/* ~/dotfiles/tmux/
 cp ~/.bashrc ~/dotfiles/.bashrc
 cp ~/.bash_aliases ~/dotfiles/.bash_aliases
 
