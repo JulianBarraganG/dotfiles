@@ -21,7 +21,8 @@ fi
 echo "Syncing dotfiles..."
 
 cp -rf ~/.config/nvim/* ~/dotfiles/nvim/
-cp -rf ~/.config/tmux/* ~/dotfiles/tmux/
+# tmux: sync config but NOT plugins (TPM-managed third-party repos, not ours to track)
+rsync -a --delete --exclude 'plugins/' ~/.config/tmux/ ~/dotfiles/tmux/
 cp ~/.bashrc ~/dotfiles/.bashrc
 cp ~/.bash_aliases ~/dotfiles/.bash_aliases
 
