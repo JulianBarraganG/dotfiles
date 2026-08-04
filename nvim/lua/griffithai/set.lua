@@ -6,6 +6,11 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
+-- Persistent undo: keep the undo history in ~/.local/state/nvim/undo/ so it
+-- survives closing the file. Without this undotree only ever sees the history
+-- of the current session.
+vim.opt.undofile = true
+
 vim.opt.scrolloff = 8 -- keep 8 lines below cursor
 
 vim.opt.updatetime = 50 -- default 4000, by setting to 50, it will update the swap file every 50ms
