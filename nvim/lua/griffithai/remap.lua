@@ -21,5 +21,14 @@ vim.keymap.set("v", "<leader>y", '"+y', { desc = "Yank selection to system clipb
 vim.keymap.set("n", "<leader>Y", '"+Y', { desc = "Yank line to system clipboard" })
 
 
+-- Git blame (gitsigns). Required lazily: this file loads before lazy.nvim.
+vim.keymap.set("n", "<leader>gb", function()
+	require("gitsigns").blame_line({ full = true })
+end, { desc = "Blame line", silent = true })
+vim.keymap.set("n", "<leader>gB", function()
+	require("gitsigns").blame()
+end, { desc = "Blame buffer", silent = true })
+
+
 -- Worst place in the universe
 vim.keymap.set("n", "Q", "<nop>", { desc = "Disabled (was Ex mode)" })

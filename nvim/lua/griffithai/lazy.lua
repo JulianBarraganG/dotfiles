@@ -25,10 +25,16 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
 
+  -- GitBlame (gitsigns) -- keymaps live in griffithai/remap.lua
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {},
+  };
+
   -- Telescope
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
+    branch = 'master',
     dependencies = { {'nvim-lua/plenary.nvim'} }
   };
 

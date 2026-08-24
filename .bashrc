@@ -99,13 +99,6 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# My own aliases
-# Use the /opt tarball nvim only where it exists (work box);
-# otherwise fall through to whatever nvim is on PATH (e.g. snap on this WSL).
-if [ -x /opt/nvim-linux-x86_64/bin/nvim ]; then
-  alias nvim='/opt/nvim-linux-x86_64/bin/nvim'
-fi
-
 # Custom functions
 mkcd() {
     mkdir -p "$1" && cd "$1" || return 1 # return 1 if cd fails

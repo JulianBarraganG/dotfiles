@@ -3,7 +3,7 @@ alias vim='nvim'
 alias dots='bash ~/dotfiles/update.sh'
 alias vnv='source .venv/bin/activate'
 alias lnv='set -a && source .env && set +a'
-alias supp='sudo apt update && sudo apt upgrade -y'
+alias supp='sudo apt update && sudo apt upgrade -y --fix-missing'
 alias bat='batcat'
 # git
 alias gst='git status'
