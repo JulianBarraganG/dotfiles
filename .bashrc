@@ -142,3 +142,5 @@ eval "$(task --completion bash)"
 
 . "$HOME/.local/bin/env"
 . "$HOME/.cargo/env"
+
+[ -f "/home/griffith/.ghcup/env" ] && . "/home/griffith/.ghcup/env" # ghcup-env

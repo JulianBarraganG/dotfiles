@@ -16,6 +16,8 @@ local parsers = {
 	"lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "bash",
 	-- No "jsonc": main dropped that parser, the json one covers it
 	"json", "yaml", "toml",
+	-- No "cabal": nvim-treesitter main has no such parser
+	"haskell",
 }
 
 -- Install anything missing. ts.install() is async, so this does not block

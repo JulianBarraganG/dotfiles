@@ -81,6 +81,19 @@ vim.lsp.config('jdtls', {
   },
 })
 
+-- Configure hls (installed via ghcup, not Mason)
+vim.lsp.config('hls', {
+  cmd = { 'haskell-language-server-wrapper', '--lsp' },
+  filetypes = { 'haskell', 'lhaskell', 'cabal' },
+  root_markers = { 'hie.yaml', 'cabal.project', 'stack.yaml', '*.cabal', 'package.yaml' },
+  settings = {
+    haskell = {
+      formattingProvider = 'ormolu',
+      cabalFormattingProvider = 'cabal-gild',
+    },
+  },
+})
+
 -- enable servers
 vim.lsp.enable('lua_ls') -- Lua LS
 vim.lsp.enable('pyright') -- Python LS
@@ -89,6 +102,7 @@ vim.lsp.enable('jdtls') -- Java
 vim.lsp.enable('clangd') -- C/C++
 vim.lsp.enable('omnisharp') -- C#
 vim.lsp.enable('rust_analyzer') -- Rust
+vim.lsp.enable('hls') -- Haskell
 
 cmp.setup({
 	sources = {
