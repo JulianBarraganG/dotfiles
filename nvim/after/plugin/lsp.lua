@@ -143,3 +143,17 @@ function ToggleLspErrors()
 end
 
 vim.keymap.set('n', '<leader>te', ToggleLspErrors, { desc = 'Toggle LSP errors' })
+
+-- Read the full diagnostic under the cursor in a floating box, for when the
+-- in-line virtual text runs off the right edge of the screen.
+vim.keymap.set('n', '<leader>el', function()
+	vim.diagnostic.open_float(nil, {
+		scope = 'line',
+		border = 'rounded',
+		source = true,
+		header = '',
+		focusable = true,
+		wrap = true,
+		max_width = math.min(100, math.floor(vim.o.columns * 0.8)),
+	})
+end, { desc = 'Show full LSP diagnostic for the line in a float' })
