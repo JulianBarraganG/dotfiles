@@ -144,3 +144,5 @@ eval "$(task --completion bash)"
 . "$HOME/.cargo/env"
 
 [ -f "/home/griffith/.ghcup/env" ] && . "/home/griffith/.ghcup/env" # ghcup-env
+# opencode
+export PATH=/home/griffith/.opencode/bin:$PATH
